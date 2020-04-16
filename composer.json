@@ -1,0 +1,30 @@
+{
+	"name": "siteparts/pdoconnections",
+	"description": "PDO database connections",
+	"license": "BSD-3-Clause",
+	"keywords": [
+		"sql",
+		"database",
+		"connection",
+		"pdo"
+	],
+	"homepage": "https://github.com/siteparts/pdoconnections",
+	"support": {
+		"issues": "https://github.com/siteparts/pdoconnections/issues",
+		"source": "https://github.com/siteparts/pdoconnections"
+	},
+	"config": {
+		"sort-packages": true
+	},
+	"autoload": {
+		"psr-4": {
+			"SiteParts\\Database\\Pdo\\": "src/"
+		}
+	},
+	"require": {
+		"php": "^7.0"
+	},
+	"suggest": {
+		"psr/container": "^1.0 to use the factory"
+	}
+}
