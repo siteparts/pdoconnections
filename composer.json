@@ -16,6 +16,11 @@
 	"config": {
 		"sort-packages": true
 	},
+	"extra": {
+		"laminas": {
+			"config-provider": "SiteParts\\Database\\Pdo\\ConfigProvider"
+		}
+	},
 	"autoload": {
 		"psr-4": {
 			"SiteParts\\Database\\Pdo\\": "src/"
