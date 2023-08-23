@@ -11,13 +11,19 @@ class Connections
 {
 	/**
 	 * Array of connection configuration.
-	 * @var array
+	 * @var array<string, array{
+	 *     dsn?: string,
+	 *     username?: string,
+	 *     password?: string,
+	 *     options?: mixed[],
+	 *     attributes?: array<int, mixed>,
+	 * }>
 	 */
 	private $config;
 
 	/**
 	 * Array of PDO handles.
-	 * @var array
+	 * @var array<string, PDO>
 	 */
 	private $handles;
 
@@ -40,7 +46,13 @@ class Connections
 	 *   ],
 	 * ]
 	 *
-	 * @param array $config Configuration of database connections
+	 * @param array<string, array{
+	 *     dsn?: string,
+	 *     username?: string,
+	 *     password?: string,
+	 *     options?: mixed[],
+	 *     attributes?: array<int, mixed>,
+	 * }> $config Configuration of database connections
 	 */
 	public function __construct(array $config)
 	{
@@ -90,6 +102,14 @@ class Connections
 		return $handle;
 	}
 
+	/**
+	 * @param array{
+	 *     dsn: string,
+	 *     username?: string,
+	 *     password?: string,
+	 *     options?: mixed[],
+	 * } $config
+	 */
 	private function createHandle(string $name, array $config) : PDO
 	{
 		$handle = null;
@@ -110,7 +130,10 @@ class Connections
 		return $handle;
 	}
 
-	private function setHandleAttributes(string $name, PDO $handle, array $attributes)
+	/**
+	 * @param array<int, mixed> $attributes
+	 */
+	private function setHandleAttributes(string $name, PDO $handle, array $attributes) : void
 	{
 		foreach ($attributes as $attribute => $value) {
 			if (!$handle->setAttribute($attribute, $value)) {
